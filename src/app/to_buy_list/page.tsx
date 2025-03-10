@@ -29,9 +29,10 @@ export default function ToBuyList() {
   }, []);
 
   // set the current user
-  useEffect(() => {
-    setCurrentUser(localStorage.getItem("userName"));
-  }, []);
+  if (typeof window !== "undefined") {
+    const storedUser = localStorage.getItem("userName");
+    setCurrentUser(storedUser);
+  }
 
   // fetch items every 1 min
   // change this logic later to websockets
