@@ -19,13 +19,18 @@ export default function ToBuyList() {
   const [items, setItems] = useState<undefined | ItemType[]>([]);
   const [updateItems, setUpdateItems] = useState<boolean>(false);
   const [isUpdating, setIsUpdating] = useState<string>("");
+  const [currentUser, setCurrentUser] = useState<string | null>("");
 
   // replace with login logic
-  const currentUser = localStorage.getItem("userName");
 
   // fetch items on initial render
   useEffect(() => {
     fetchItems();
+  }, []);
+
+  // set the current user
+  useEffect(() => {
+    setCurrentUser(localStorage.getItem("userName"));
   }, []);
 
   // fetch items every 1 min
