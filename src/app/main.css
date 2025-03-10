@@ -1,0 +1,328 @@
+@import url("https://fonts.googleapis.com/css2?family=Chokokutai&family=Dancing+Script:wght@400..700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Baskervville SC", serif;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-color: rgb(255, 255, 253);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  padding: 0;
+}
+
+#root {
+  padding-top: 75px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.menubar {
+  background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 2vw;
+}
+.menubar h3 {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.menubar h3 span {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  padding-right: 1.5vw;
+  font-size: 1.4rem;
+}
+
+.to_buy_list__main {
+  width: 100%;
+  height: calc(100vh - 50px);
+  max-width: 1000px;
+  background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
+  display: grid;
+  grid-template-rows: 90% 10%;
+}
+
+.current_items_div {
+  background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
+  padding: 15px 3vw 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+}
+
+.current_items_div--pinned,
+.current_items_div--unpinned {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+}
+
+.current_items_div--pinned::after {
+  content: "";
+  width: 100%;
+  border: 1px solid black;
+  margin: 10px 0px;
+}
+
+.add_new_item_div {
+  background-color: #e9cab4;
+  padding: 0px 3vw;
+  display: flex;
+  align-items: center;
+}
+.add_new_item_div form {
+  display: flex;
+  column-gap: 2vw;
+}
+.add_new_item_div form input {
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #245c8a;
+  padding: 0px 5px;
+}
+.add_new_item_div form button {
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #245c8a;
+}
+
+.item_to_buy_wrapper {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background-color: #ddae8d;
+}
+
+.item_to_buy_slider {
+  width: 200%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  transition: 0.2s;
+}
+
+.item_to_buy_wrapper__sec_1,
+.item_to_buy_wrapper__sec_2 {
+  width: 50%;
+  height: 100%;
+  padding: 0px 3vw;
+  flex-shrink: 0;
+}
+
+.item_to_buy_wrapper__sec_1 {
+  display: grid;
+  grid-template-columns: 7.5fr 2.5fr;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.item_to_buy_wrapper__sec_2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+}
+.item_to_buy_wrapper__sec_2 form {
+  column-gap: 5px;
+  display: flex;
+  height: 30px;
+}
+
+.item_to_buy_wrapper__sec_1__left {
+  display: flex;
+  justify-content: space-between;
+}
+.item_to_buy_wrapper__sec_1__left h3 {
+  color: #245c8a;
+}
+
+.item_to_buy_wrapper__sec_1__right {
+  display: flex;
+  column-gap: 1vw;
+  justify-content: end;
+}
+.item_to_buy_wrapper__sec_1__right button {
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.item_to_buy_wrapper__sec_1__left__pinnedBy {
+  display: flex;
+  align-items: end;
+}
+.item_to_buy_wrapper__sec_1__left__pinnedBy h5 {
+  padding: 0px 2px;
+  font-size: 0.7rem;
+}
+.item_to_buy_wrapper__sec_1__left__pinnedBy h6 {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.6rem;
+  padding-right: 3px;
+}
+
+.item_to_buy_btn--pinned {
+  background-color: #245c8a;
+  color: white;
+}
+
+.item_to_buy_btn--unpinned {
+  background-color: white;
+  color: #245c8a;
+}
+
+.item_to_buy_btn__buy {
+  color: #178c3e;
+}
+
+.buy_item_undo_btn {
+  background-color: #e9cab4;
+  border: none;
+}
+
+.buy_item_check_btn {
+  background-color: #e9cab4;
+  border: none;
+}
+
+.buy_item_amout_input {
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 100px;
+  padding-left: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_page_main_div {
+  background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+}
+
+.login_option_btn {
+  color: rgb(64, 117, 50);
+  font-size: 2rem;
+  border: 1px solid black;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.login_option_btn:active {
+  background-color: #d19266;
+}
+
+body {
+  max-width: 1000px;
+}
+
+.main_layout {
+  background-color: red;
+  height: 50px;
+}
+
+.main_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
+  flex-direction: column;
+}
+
+.logo_container {
+  width: 150px;
+  height: 150px;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.logo_container span {
+  font-size: 1rem;
+  display: block;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
