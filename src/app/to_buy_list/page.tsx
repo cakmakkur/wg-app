@@ -29,10 +29,13 @@ export default function ToBuyList() {
   }, []);
 
   // set the current user
-  if (typeof window !== "undefined") {
-    const storedUser = localStorage.getItem("userName");
-    setCurrentUser(storedUser);
-  }
+  // this is for the nextjs configuration
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("userName");
+      setCurrentUser(storedUser);
+    }
+  }, []);
 
   // fetch items every 1 min
   // change this logic later to websockets
