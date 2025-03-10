@@ -9,7 +9,12 @@ export default function LoginPage() {
 
   const handleClick = (e: React.MouseEvent, user: string) => {
     e.preventDefault();
-    localStorage.setItem("userName", user);
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("userName", user);
+    }
+    // for vercel nextjs server, used above instead directly
+    // localStorage.setItem("userName", user);
     setIsExiting(true);
     setTimeout(() => {
       router.push("/to_buy_list");
