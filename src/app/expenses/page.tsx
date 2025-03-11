@@ -1,4 +1,4 @@
-// import {useState} from "react";
+// import { useState } from "react";
 
 // interface ItemType {
 //   _id: string;
@@ -10,9 +10,9 @@
 //   isUpdating: string;
 // }
 
-// export default function Expenses() {
-//   const [items, setItems] = useState<undefined | ItemType[]>([]);
-//     const [currentUser, setCurrentUser] = useState<string | null>("");
+export default function Expenses() {
+  //   const [items, setItems] = useState<undefined | ItemType[]>([]);
+  //     const [currentUser, setCurrentUser] = useState<string | null>("");
 
-//   return <div>Expenses</div>;
-// }
+  return <div>Expenses</div>;
+}
