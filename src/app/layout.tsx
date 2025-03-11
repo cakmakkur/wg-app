@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./main.css";
+import { ItemsContextProvider } from "./context/ItemsContext";
 
 export const metadata: Metadata = {
   title: "WG App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ItemsContextProvider>{children}</ItemsContextProvider>
+      </body>
     </html>
   );
 }

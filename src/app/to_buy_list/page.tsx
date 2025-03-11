@@ -3,6 +3,7 @@
 import { useState, FormEvent, useEffect } from "react";
 import ItemToBuyWrapper from "@/components/ItemToBuyWrapper";
 import Image from "next/image";
+import { useItemsContext } from "../context/ItemsContext";
 
 interface ItemType {
   _id: string;
@@ -16,61 +17,28 @@ interface ItemType {
 
 export default function ToBuyList() {
   const [userInput, setUserInput] = useState("");
-  const [items, setItems] = useState<undefined | ItemType[]>([]);
   const [updateItems, setUpdateItems] = useState<boolean>(false);
   const [isUpdating, setIsUpdating] = useState<string>("");
-  const [currentUser, setCurrentUser] = useState<string | null>("");
-
-  // replace with login logic
-
-  // fetch items on initial render
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  // set the current user
-  // this is for the nextjs configuration
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("userName");
-      setCurrentUser(storedUser);
-    }
-  }, []);
+  const { items, setItems, fetchItems, user } = useItemsContext();
 
   // fetch items every 1 min
-  // change this logic later to websockets
   useEffect(() => {
     const interval = setInterval(() => {
       fetchItems();
-    }, 1000);
+    }, 60000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   // update items when user inputs new item
   useEffect(() => {
     fetchItems();
   }, [updateItems]);
 
-  // fetch/update current items to buy
-  const fetchItems = async () => {
-    try {
-      const response = await fetch("/to_buy_list/api", { cache: "no-cache" });
-      if (!response.ok) {
-        console.log("Failed to fetch items");
-        throw new Error("Failed to fetch items");
-      }
-      const data = await response.json();
-      setItems(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   // submit new item
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/to_buy_list/api", {
+      const response = await fetch("/api/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,24 +58,25 @@ export default function ToBuyList() {
 
   // pin item
   const handlePinItem = async (id: string) => {
-    if (!currentUser) return;
+    if (!user) return;
     setIsUpdating(id);
     const item = items?.find((i) => i._id === id);
     if (!item) return;
     let newPinnedByList = item.pinnedBy;
 
-    if (newPinnedByList?.includes(currentUser)) {
-      newPinnedByList = newPinnedByList.filter((user) => user !== currentUser);
+    if (newPinnedByList?.includes(user)) {
+      newPinnedByList = newPinnedByList.filter((user) => user !== user);
     } else {
-      newPinnedByList?.push(currentUser);
+      newPinnedByList?.push(user);
     }
+    // @ts-expect-error couldn't solve this stupid ts problem
     setItems((prevItems) =>
-      prevItems?.map((i) =>
+      prevItems.map((i: ItemType) =>
         i._id === id ? { ...i, pinnedBy: newPinnedByList } : i
       )
     );
     try {
-      const response = await fetch("/to_buy_list/api?type=pin", {
+      const response = await fetch("/api/items?type=pin", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -130,17 +99,17 @@ export default function ToBuyList() {
 
   //buy item
   const handleBuyItem = async (e: FormEvent, id: string, cost: number) => {
-    if (!currentUser) return;
+    if (!user) return;
     setIsUpdating("buying");
     const item = items?.find((i) => i._id === id);
     if (!item) return;
     try {
-      const response = await fetch("/to_buy_list/api?type=buy", {
+      const response = await fetch("/api/items?type=buy", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ _id: id, boughtBy: currentUser, cost }),
+        body: JSON.stringify({ _id: id, boughtBy: user, cost }),
       });
       if (!response.ok) {
         console.log("Failed to update item");
@@ -159,7 +128,7 @@ export default function ToBuyList() {
     }
   };
 
-  if (currentUser === null) {
+  if (user === null) {
     return (
       <div className="to_buy_list__main">
         <h2>You are not logged in</h2>
@@ -172,7 +141,7 @@ export default function ToBuyList() {
       <div className="current_items_div">
         <div className="current_items_div--pinned">
           {items?.map((i) => {
-            if (i.pinnedBy && !i.cost && i.pinnedBy.includes(currentUser)) {
+            if (i.pinnedBy && !i.cost && i.pinnedBy.includes(user)) {
               return (
                 <ItemToBuyWrapper
                   key={i.item}
@@ -193,7 +162,7 @@ export default function ToBuyList() {
               !i.cost &&
               (!i.pinnedBy ||
                 i.pinnedBy.length === 0 ||
-                !i.pinnedBy.includes(currentUser))
+                !i.pinnedBy.includes(user))
             ) {
               return (
                 <ItemToBuyWrapper

@@ -1,11 +1,11 @@
 import connectToDatabase from "@/lib/mongodb";
-import ItemToBuy from "@/models/ItemToBuy";
+import Items from "@/models/Item";
 import { NextRequest } from "next/server";
 
 export async function GET() {
   await connectToDatabase();
   try {
-    const items = await ItemToBuy.find();
+    const items = await Items.find();
     return new Response(JSON.stringify(items), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -37,7 +37,7 @@ export async function PUT(request: NextRequest) {
       );
     }
     try {
-      const updatedItem = await ItemToBuy.findByIdAndUpdate(_id, {
+      const updatedItem = await Items.findByIdAndUpdate(_id, {
         pinnedBy,
       });
       if (!updatedItem) {
@@ -65,7 +65,7 @@ export async function PUT(request: NextRequest) {
       );
     }
     try {
-      const updatedItem = await ItemToBuy.findByIdAndUpdate(_id, {
+      const updatedItem = await Items.findByIdAndUpdate(_id, {
         boughtAt: Date.now(),
         boughtBy,
         cost,
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
   await connectToDatabase();
   const { item } = await request.json();
   try {
-    await ItemToBuy.create({ item });
+    await Items.create({ item });
     return new Response(JSON.stringify("Item saved successfully"), {
       status: 200,
       headers: { "Content-Type": "application/json" },

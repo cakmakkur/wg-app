@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const itemToBuySchema = new Schema(
+const itemsSchema = new Schema(
   {
     item: {
       type: String,
@@ -26,5 +26,4 @@ const itemToBuySchema = new Schema(
   }
 );
 
-export default mongoose.models.ItemToBuy ||
-  mongoose.model("ItemToBuy", itemToBuySchema);
+export default mongoose.models.Items || mongoose.model("Items", itemsSchema);

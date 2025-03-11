@@ -1,20 +1,39 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useItemsContext } from "../context/ItemsContext";
 
 export default function LoginPage() {
   const [isExiting, setIsExiting] = useState(false);
   const router = useRouter();
+  const { setItems, setUser } = useItemsContext();
+
+  // initial fetching of items
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    try {
+      const response = await fetch("/api/items", { cache: "no-cache" });
+      if (!response.ok) {
+        console.log("Failed to fetch items");
+        throw new Error("Failed to fetch items");
+      }
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleClick = (e: React.MouseEvent, user: string) => {
     e.preventDefault();
 
-    if (typeof window !== "undefined") {
-      localStorage.setItem("userName", user);
-    }
-    // for vercel nextjs server, used above instead directly
-    // localStorage.setItem("userName", user);
+    // special treatment for nextjs
+    // window.localStorage.setItem("userName", user);
+    setUser(user);
     setIsExiting(true);
     setTimeout(() => {
       router.push("/to_buy_list");

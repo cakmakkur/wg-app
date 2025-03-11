@@ -1,6 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
-
+import Menubar from "@/components/Menubar";
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -8,15 +6,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <div>
-      <div className="menubar">
-        <Link href="/">
-          <h3>
-            <span>WG</span>- App
-          </h3>
-        </Link>
-
-        <Image src="/menu.svg" alt="menu icon" width={40} height={40} />
-      </div>
+      <Menubar />
       {children}
     </div>
   );
