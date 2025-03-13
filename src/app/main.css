@@ -345,8 +345,8 @@ input:focus {
 
 body {
   max-width: 1000px;
-  width: 100%;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   overflow: hidden;
 }
 
