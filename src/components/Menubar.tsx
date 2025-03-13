@@ -32,19 +32,60 @@ export default function Menubar() {
         height={40}
       />
       <div ref={sliderDiv} className="menubar_slider_div">
-        <button className="menubar_slider_div__close_btn" onClick={toggleMenu}>
+        {/* <button className="menubar_slider_div__close_btn" onClick={toggleMenu}>
           X
-        </button>
+        </button> */}
+        <Image
+          className="menubar_slider_div__close_btn"
+          onClick={toggleMenu}
+          src="undo.svg"
+          alt="undo icon"
+          width={45}
+          height={45}
+        />
         <div className="menubar_slider__links_div">
-          <Link className="menubar_slider__links" href="/">
-            Home
-          </Link>
-          <Link className="menubar_slider__links" href="/to_buy_list">
-            To-Buy List
-          </Link>
-          <Link className="menubar_slider__links" href="/">
-            Expenses
-          </Link>
+          <div className="menubar__links">
+            <Image width={30} height={30} alt="home icon" src="/home.svg" />
+            <Link
+              onClick={toggleMenu}
+              className="menubar_slider__links"
+              href="/"
+            >
+              Home
+            </Link>
+          </div>
+
+          <div className="menubar__links">
+            <Image
+              width={30}
+              height={30}
+              alt="shopping bag icon"
+              src="/shopping.svg"
+            />
+            <Link
+              onClick={toggleMenu}
+              className="menubar_slider__links"
+              href="/to_buy_list"
+            >
+              To-Buy List
+            </Link>
+          </div>
+
+          <div className="menubar__links">
+            <Image
+              width={30}
+              height={30}
+              alt="expenses icon"
+              src="/chart.svg"
+            />
+            <Link
+              onClick={toggleMenu}
+              className="menubar_slider__links"
+              href="/expenses"
+            >
+              Expenses
+            </Link>
+          </div>
         </div>
       </div>
     </div>

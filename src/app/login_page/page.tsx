@@ -49,6 +49,7 @@ export default function LoginPage() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
+          <h1>Login</h1>
           <motion.div
             onClick={(e) => handleClick(e, "Diana")}
             className="login_option_btn"

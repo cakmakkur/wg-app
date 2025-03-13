@@ -5,7 +5,13 @@
   max-width: 1000px;
   background: $orange-background;
   display: grid;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 10% 80% 10%;
+}
+
+.to_buy_list__title {
+  padding: 0px 3vw;
+  font-size: 2rem;
+  color: $primary-blue;
 }
 
 .current_items_div {

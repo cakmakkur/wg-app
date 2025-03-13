@@ -17,7 +17,7 @@ interface ItemType {
 
 export default function ToBuyList() {
   const [userInput, setUserInput] = useState("");
-  const [updateItems, setUpdateItems] = useState<boolean>(false);
+  // const [updateItems, setUpdateItems] = useState<boolean>(false);
   const [isUpdating, setIsUpdating] = useState<string>("");
   const { items, setItems, fetchItems, user } = useItemsContext();
 
@@ -30,9 +30,9 @@ export default function ToBuyList() {
   }, []);
 
   // update items when user inputs new item
-  useEffect(() => {
-    fetchItems();
-  }, [updateItems]);
+  // useEffect(() => {
+  //   fetchItems();
+  // }, [updateItems]);
 
   // submit new item
   const handleSubmit = async (e: FormEvent) => {
@@ -50,7 +50,7 @@ export default function ToBuyList() {
         throw new Error("Failed to save new item");
       }
       setUserInput("");
-      setUpdateItems(!updateItems);
+      await fetchItems();
     } catch (error) {
       console.error(error);
     }
@@ -85,10 +85,10 @@ export default function ToBuyList() {
       });
       if (!response.ok) {
         console.log("Failed to update item");
-        setUpdateItems(!updateItems);
+        await fetchItems();
         throw new Error("Failed to update item");
       }
-      setUpdateItems(!updateItems);
+      await fetchItems();
     } catch (error) {
       console.error(error);
       alert("Couldn't update the database");
@@ -99,6 +99,7 @@ export default function ToBuyList() {
 
   //buy item
   const handleBuyItem = async (e: FormEvent, id: string, cost: number) => {
+    e.preventDefault();
     if (!user) return;
     setIsUpdating("buying");
     const item = items?.find((i) => i._id === id);
@@ -113,22 +114,21 @@ export default function ToBuyList() {
       });
       if (!response.ok) {
         console.log("Failed to update item");
-        setUpdateItems(!updateItems);
+        await fetchItems();
         throw new Error("Failed to update item");
       }
-      // here timer to update
-      // and animation to update
-      setUpdateItems(!updateItems);
     } catch (error) {
       console.error(error);
       // here I need something better than alert
       alert("Couldn't update the database");
     } finally {
       setIsUpdating("");
+      await fetchItems();
     }
   };
 
   if (user === null) {
+    console.log(user);
     return (
       <div className="to_buy_list__main">
         <h2>You are not logged in</h2>
@@ -138,6 +138,7 @@ export default function ToBuyList() {
 
   return (
     <div className="to_buy_list__main">
+      <div className="to_buy_list__title">Shopping List:</div>
       <div className="current_items_div">
         <div className="current_items_div--pinned">
           {items?.map((i) => {

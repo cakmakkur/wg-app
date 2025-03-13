@@ -31,15 +31,19 @@
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background-color: $primary-green;
+  background-color: $primary-blue;
 }
 
 .menubar_slider_div__close_btn {
   position: absolute;
   top: 2vw;
   right: 2vw;
-  font-size: 2rem;
   cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  padding: 3px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px 2px rgba(255, 255, 255, 0.564);
 }
 
 .menubar_slider__links_div {
@@ -47,11 +51,18 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 4vh 4vw;
-  row-gap: 1vh;
+  padding: 10vh 4vw;
+  row-gap: 4vh;
 }
 
 .menubar_slider__links {
   color: white;
   font-size: 2rem;
+}
+
+.menubar__links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
 }

@@ -7,6 +7,11 @@
   align-items: center;
   justify-content: center;
   row-gap: 1rem;
+  & h1 {
+    color: $primary-blue;
+    border-bottom: 1px solid black;
+    margin-bottom: 2vh;
+  }
 }
 
 .login_option_btn {

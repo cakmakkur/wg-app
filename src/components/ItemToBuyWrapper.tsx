@@ -48,7 +48,7 @@ export default function ItemToBuyWrapper({
           <div className="item_to_buy_wrapper__sec_1__left">
             <h3>{item.item}</h3>
             <div className="item_to_buy_wrapper__sec_1__left__pinnedBy">
-              <h6>Pinned by:</h6>
+              {pinnedByList?.length > 0 ? <h6>Pinned by:</h6> : ""}
               {pinnedByList?.map((n) => {
                 return <h5 key={n}>{n}</h5>;
               })}

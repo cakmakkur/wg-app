@@ -103,15 +103,19 @@ input:focus {
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background-color: #178c3e;
+  background-color: #245c8a;
 }
 
 .menubar_slider_div__close_btn {
   position: absolute;
   top: 2vw;
   right: 2vw;
-  font-size: 2rem;
   cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  padding: 3px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px 2px rgba(255, 255, 255, 0.564);
 }
 
 .menubar_slider__links_div {
@@ -119,13 +123,20 @@ input:focus {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 4vh 4vw;
-  row-gap: 1vh;
+  padding: 10vh 4vw;
+  row-gap: 4vh;
 }
 
 .menubar_slider__links {
   color: white;
   font-size: 2rem;
+}
+
+.menubar__links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .to_buy_list__main {
@@ -134,7 +145,13 @@ input:focus {
   max-width: 1000px;
   background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
   display: grid;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 10% 80% 10%;
+}
+
+.to_buy_list__title {
+  padding: 0px 3vw;
+  font-size: 2rem;
+  color: #245c8a;
 }
 
 .current_items_div {
@@ -306,6 +323,11 @@ input:focus {
   justify-content: center;
   row-gap: 1rem;
 }
+.login_page_main_div h1 {
+  color: #245c8a;
+  border-bottom: 1px solid black;
+  margin-bottom: 2vh;
+}
 
 .login_option_btn {
   color: rgb(64, 117, 50);
@@ -338,6 +360,7 @@ body {
   height: 100vh;
   background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
   flex-direction: column;
+  overflow: hidden;
 }
 
 .logo_container {

@@ -23,6 +23,7 @@ body {
   height: 100vh;
   background: $orange-background;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .logo_container {
