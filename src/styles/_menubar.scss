@@ -23,7 +23,7 @@
 }
 
 .menubar_slider_div {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transform: translateX(100%);
@@ -32,6 +32,7 @@
   height: 100vh;
   z-index: 100;
   background-color: $primary-blue;
+  overflow-x: hidden;
 }
 
 .menubar_slider_div__close_btn {

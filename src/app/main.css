@@ -95,7 +95,7 @@ input:focus {
 }
 
 .menubar_slider_div {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transform: translateX(100%);
@@ -104,6 +104,7 @@ input:focus {
   height: 100vh;
   z-index: 100;
   background-color: #245c8a;
+  overflow-x: hidden;
 }
 
 .menubar_slider_div__close_btn {
