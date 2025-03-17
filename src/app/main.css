@@ -344,10 +344,11 @@ input:focus {
 }
 
 body {
-  max-width: 1000px;
-  width: 100dvw;
+  width: 100vw;
   height: 100dvh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: relative;
 }
 
 .main_layout {
