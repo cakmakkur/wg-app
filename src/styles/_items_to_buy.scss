@@ -1,8 +1,7 @@
 .to_buy_list__main {
   width: 100%;
   // menubar is 50px
-  height: calc(100vh - 50px);
-  max-width: 1000px;
+  height: calc(100vh - 45px);
   background: $orange-background;
   display: grid;
   grid-template-rows: 10% 80% 10%;
@@ -43,6 +42,7 @@
   padding: 0px 3vw;
   display: flex;
   align-items: center;
+  max-height: 100%;
   & form {
     display: flex;
     column-gap: 2vw;

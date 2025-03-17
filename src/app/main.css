@@ -142,8 +142,7 @@ input:focus {
 
 .to_buy_list__main {
   width: 100%;
-  height: calc(100vh - 50px);
-  max-width: 1000px;
+  height: calc(100vh - 45px);
   background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
   display: grid;
   grid-template-rows: 10% 80% 10%;
@@ -182,6 +181,7 @@ input:focus {
   padding: 0px 3vw;
   display: flex;
   align-items: center;
+  max-height: 100%;
 }
 .add_new_item_div form {
   display: flex;
