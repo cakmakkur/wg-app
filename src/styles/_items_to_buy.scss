@@ -1,8 +1,8 @@
 .to_buy_list__main {
   width: 100%;
   // menubar is 50px
-  // height: calc(100vh - 45px);
-  height: 90%;
+  height: calc(100vh - 45px);
+  // height: 100vh;
   background: $orange-background;
   display: grid;
   grid-template-rows: 10% 80% 10%;
