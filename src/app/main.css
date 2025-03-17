@@ -142,7 +142,7 @@ input:focus {
 
 .to_buy_list__main {
   width: 100%;
-  height: calc(100vh - 45px);
+  height: 90%;
   background: linear-gradient(307deg, rgb(221, 174, 141) 0%, rgb(239, 216, 200) 100%);
   display: grid;
   grid-template-rows: 10% 80% 10%;
